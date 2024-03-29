@@ -11,6 +11,7 @@ body {
 .game-container {
     width: 70vw;
     max-width: 675px;
+    min-width: 365px;
     aspect-ratio: 1;
     position: absolute;
     left: 50%;

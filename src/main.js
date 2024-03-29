@@ -3,7 +3,7 @@
 
 window.onload = function() {
 
-    new Minesweeper(18, 40);
+    new Minesweeper(10, 22); // 18 40
 }
 
 
