@@ -1,6 +1,9 @@
 
 body {
     background: linear-gradient(#e66465, #9198e5);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 * {
@@ -8,16 +11,22 @@ body {
     margin: 0;
     /* outline: 1px solid purple; */
 }
+
+.header {
+    position: relative;
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+}
+
 .game-container {
     width: 70vw;
     max-width: 675px;
     min-width: 365px;
     aspect-ratio: 1;
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
+    position: relative;
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin-top: 2vw;
 }

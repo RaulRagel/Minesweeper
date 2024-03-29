@@ -32,8 +32,8 @@ function initTablero(cellNumber) {
             td.setAttribute('id', x +'-'+ y);
             td.setAttribute('class', 'cell');
             td.onclick = cellClick;
-            td.addEventListener('mousedown', setFlag);
-            td.addEventListener('mouseup', cancelFlag);
+            td.addEventListener('mousedown', holdAndSetFlag);
+            td.addEventListener('mouseup', cancelHold);
             tr.appendChild(td);
             row.push('');
         }
@@ -44,37 +44,46 @@ function initTablero(cellNumber) {
 }
 
 function cellClick() {
-    if(this.classList.contains('flag')) return;
-    if(flagging) { // siempre que sea true, es porque hemos mantenido
-        flagging = false;
-    } else {
-        var [x, y] = this.id.split('-').map(Number);
-    
-        this.classList.add('discovered', 'num-' + gameArray[x][y]);
-    
-        if(gameArray[x][y] == 'X') {
-            console.log('GAME OVER');
-        } else if(gameArray[x][y] == '0') {
-            expand(x, y);
+    if(!flagMode) {
+        if(this.classList.contains('flag')) return;
+        if(flagging) { // siempre que sea true, es porque hemos mantenido
+            flagging = false;
         } else {
-            checkFlagsAndExpand(x, y);
+            var [x, y] = this.id.split('-').map(Number);
+        
+            this.classList.add('discovered', 'num-' + gameArray[x][y]);
+        
+            if(gameArray[x][y] == 'X') {
+                console.log('GAME OVER');
+            } else if(gameArray[x][y] == '0') {
+                expand(x, y);
+            } else {
+                checkFlagsAndExpand(x, y);
+            }
         }
+    } else {
+        setFlag(null, this);
     }
 }
 
-function setFlag(e) {
+function holdAndSetFlag(e) {
     flagging = false; // aqui aun no sabemos si vamos a poner bandera, lo resetamos para que no se quede activo
     holdClickTimeout = setTimeout(function() {
-        if(!e.target.classList.contains('discovered')) {
-            flagging = true; // siempre al mentener es para poner banderas
-            console.log(flagging);
-            e.target.classList.toggle('flag');
-            cancelFlag();
-        }
+        if(!flagMode) setFlag(e);
     }, 400);
 }
 
-function cancelFlag() {
+function setFlag(event, cell) {
+    var target = event ? event.target : cell;
+    if(!target.classList.contains('discovered')) {
+        flagging = true; // siempre al mentener es para poner banderas
+        console.log(flagging);
+        target.classList.toggle('flag');
+        cancelHold();
+    }
+}
+
+function cancelHold() {
     if(holdClickTimeout) { // si no se ha completado cancelamos para que no se ponga en modo banderas
         clearTimeout(holdClickTimeout);
         holdClickTimeout = null;

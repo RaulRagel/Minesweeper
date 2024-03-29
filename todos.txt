@@ -13,3 +13,6 @@ En configuración:
 - El usuario puede decidir si usar el click derecho o mantener pulsado
 - El usuario puede activar logs para ver el estado del tablero
 - Control del usuario: si intenta poner más bombas de lo permitido o menos celdas
+
+Bugs móvil:
+- Arreglar las banderas, ya sea el mantener o poner una checkbox
