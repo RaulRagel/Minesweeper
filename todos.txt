@@ -1,0 +1,15 @@
+
+
+
+Bugs:
+- Si expandes y habia una bandera, debemos aplastarla
+
+
+- Menú de configuración
+- Game over: se desvelan todas las bombas y el usuario ya no puede hacer más clicks. Aparece un botón de restart
+- Meter musica, sfx y control de volumen
+
+En configuración:
+- El usuario puede decidir si usar el click derecho o mantener pulsado
+- El usuario puede activar logs para ver el estado del tablero
+- Control del usuario: si intenta poner más bombas de lo permitido o menos celdas

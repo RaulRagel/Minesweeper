@@ -1,0 +1,64 @@
+
+/* background-color: rgb(160, 235, 163); */
+
+#tablero {
+    width: 100%;
+    height: 100%;
+    border-collapse: collapse;
+}
+
+#tablero td {
+    position: relative;
+    background-color: rgb(132, 238, 136);
+    font-size: 2.5vh;
+    font-family: monospace;
+}
+#tablero td:hover:not(.discovered):not(.flag) {
+    background-color: rgb(187, 235, 188);
+}
+#tablero .discovered {
+    background-color: rgb(199, 241, 200);
+}
+
+#tablero td::before {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+#tablero .num-1::before {
+    content: '1';
+    color: rgb(56, 176, 180);
+}
+#tablero .num-2::before {
+    content: '2';
+    color: rgb(114, 56, 180);
+}
+#tablero .num-3::before {
+    content: '3';
+    color: rgb(180, 130, 56);
+}
+#tablero .num-4::before {
+    content: '4';
+    color: rgb(221, 86, 199);
+}
+#tablero .num-5::before {
+    content: '5';
+    color: rgb(31, 83, 10);
+}
+
+#tablero .num-X::before {
+    content: '💣';
+}
+#tablero .num-X {
+    background-color: rgba(212, 24, 24, 0.767) !important;
+}
+
+#tablero .flag::before {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    content: '🚩';
+}
