@@ -3,7 +3,9 @@ var flagMode = false;
 
 window.onload = function() {
     
-    new Minesweeper(10, 22); // 18 40
+    // cells^2 / 8 = bombs
+    new Minesweeper(8, 8);
+    
     new FlagCheckbox();
     new Configuration();
 }
