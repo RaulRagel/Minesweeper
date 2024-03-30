@@ -44,13 +44,12 @@ function initTablero(cellNumber) {
 }
 
 function cellClick() {
+    var [x, y] = this.id.split('-').map(Number);
     if(!flagMode) {
         if(this.classList.contains('flag')) return;
         if(flagging) { // siempre que sea true, es porque hemos mantenido
             flagging = false;
         } else {
-            var [x, y] = this.id.split('-').map(Number);
-        
             this.classList.add('discovered', 'num-' + gameArray[x][y]);
         
             if(gameArray[x][y] == 'X') {
@@ -62,7 +61,11 @@ function cellClick() {
             }
         }
     } else {
+      if(this.classList.contains('discovered')) {
+        checkFlagsAndExpand(x, y)
+      }else{
         setFlag(null, this);
+      }
     }
 }
 
@@ -77,7 +80,6 @@ function setFlag(event, cell) {
     var target = event ? event.target : cell;
     if(!target.classList.contains('discovered')) {
         flagging = true; // siempre al mentener es para poner banderas
-        console.log(flagging);
         target.classList.toggle('flag');
         cancelHold();
     }
