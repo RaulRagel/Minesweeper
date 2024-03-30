@@ -1,10 +1,10 @@
 
 
 var msgs = [
-    'Aún no está implementado... lo siento :(',
-    'Ya te he dicho que no está implementado',
+    'Aún no está implementado... lo siento :( No deberías volver a pulsar este botón.',
+    'Ya te he dicho que no está implementado, y además te he dicho expresamente que no le des al botón',
     'Bro, no insistas, que no hay configuración todavía',
-    'A ver... no nos estamos entendiendo. Este botón aún lo puedes usar! eres tonto??',
+    'A ver... no nos estamos entendiendo. Este botón aún lo puedes usar! eres tont@??',
     'Mira, voy a calmarme y te lo voy a explicar. Este botón es pura decoración de momento, no me ha dado tiempo a hacerlo. Por favor, ten paciencia :)',
     'Esto no está funcionando. Dentro de poco los mensajes se van a repetir porque no he escrito frases infinitas, así que por favor, para de darle al botón y juega al p*** buscaminas!',
     'Pues nada... aquí estamos de nuevo. Debes estar muy interesado en cambiar los ajustes, si yo lo entiendo. PERO ESQUE AÚN NO SE PUEDE.',
