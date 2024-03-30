@@ -7,19 +7,21 @@
     border-collapse: collapse;
 }
 
-#tablero td {
+#tablero td, #tablero:focus {
     position: relative;
     background-color: rgb(132, 238, 136);
     font-size: 2.5vh;
     font-family: monospace;
-    border: 1px solid darkgray;
+    border: none;
+}
+#tablero td:not(.discovered) {
+  outline: 1px solid darkgray;
 }
 #tablero td:hover:not(.discovered):not(.flag) {
     background-color: rgb(187, 235, 188);
 }
 #tablero .discovered {
     background-color: rgb(199, 241, 200);
-    /*border: none;*/
 }
 
 #tablero td::before {
@@ -55,7 +57,6 @@
 }
 #tablero .num-X {
     background-color: rgba(212, 24, 24, 0.767) !important;
-    border: none;
 }
 
 #tablero .flag::before {
