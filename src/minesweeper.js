@@ -175,3 +175,7 @@ function checkFlagsAndExpand(x, y) {
 function getCell(x, y) {
     return document.getElementById(x+'-'+y);
 }
+
+function has(cell, clas) {
+  return cell.classList.contains(clas)
+}
