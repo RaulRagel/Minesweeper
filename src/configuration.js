@@ -19,8 +19,8 @@ var msgs = [
     'Mira, tu ganas, estoy harto. Te voy a confesar algo. En realidad sí está implementada, pero es que aún no está acabada... es un copia pega del snake y no he podido cambiarlo aún. Dale otra vez al botón, que sé que te flipa.'
 ]
 
-var count = 0;
-// var count = msgs.length - 1;
+// var count = 0;
+var count = msgs.length - 1;
 
 function Configuration() {
     initModal();
@@ -72,7 +72,6 @@ function initModal(){
   buttons[0].addEventListener("click", defaultButton);
   buttons[1].addEventListener("click", saveButton);
   buttons[2].addEventListener("click", cancelButton);
- 
 }
 
 

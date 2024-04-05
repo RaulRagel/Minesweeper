@@ -3,6 +3,7 @@ var gameArray = [];
 var max = 0;
 var holdClickTimeout = null;
 var flagging = false;
+var cellNumber = 0;
 
 var directions = [
     [-1, -1], [-1, 0], [-1, 1],
@@ -24,6 +25,7 @@ function initTablero(cellNumber) {
     var table = document.getElementById('tablero');
     var tr = null, td = null;
     var row = null;
+    this.cellNumber = cellNumber;
     for (var x = 0; x < cellNumber; x++) {
         tr = document.createElement('tr');
         row = [];
@@ -53,7 +55,7 @@ function cellClick() {
             this.classList.add('discovered', 'num-' + gameArray[x][y]);
         
             if(gameArray[x][y] == 'X') {
-                console.log('GAME OVER');
+                gameOver();
             } else if(gameArray[x][y] == '0') {
                 expand(x, y);
             } else {
@@ -67,6 +69,22 @@ function cellClick() {
         setFlag(null, this);
       }
     }
+}
+
+function gameOver() {
+    var cell = null;
+    for (var x = 0; x < cellNumber; x++) {
+        for (var y = 0; y < cellNumber; y++) {
+            cell = getCell(x, y);
+            if(gameArray[x][y] == 'X' && !cell.classList.contains('discovered')) {
+                cell.classList.add('discovered', 'num-' + gameArray[x][y]);
+            }
+        }
+    }
+    setTimeout(function() {
+        alert('Game Over');
+        reload();
+    }, 100)
 }
 
 function holdAndSetFlag(e) {
