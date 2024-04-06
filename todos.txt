@@ -8,6 +8,7 @@ Bugs:
 - Meter musica, sfx y control de volumen
     Puedes hacer una clase propia para controlar si está en mute y tal
 - Agregar dificultades
+- Selector de fondos
 
 En configuración:
 - El usuario puede decidir si usar el click derecho o mantener pulsado

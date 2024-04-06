@@ -30,38 +30,29 @@
 
     <dialog class="modal" id="settings-modal">
         <div class="modal-header">
-            <button onclick="closeModal()">
-                <span>&times;</span>
-            </button>
+            <div class="title">Configuración</div>
+            <div class="close">❌</div>
         </div>
         <div class="modal-body">
-            <div class="h1">Configuración</div>
-
-            <div class="flex-section">
-                <span>Celdas (ancho)</span>
-                <input id="cells" type="text">
+            <div class="config-cells">
+                <div>Celdas (ancho)</div>
+                <input id="cells" type="number" min="1">
+            </div>
+            <div class="config-bombs">
+                <div>Bombas</div>
+                <input id="bombs" type="number" min="1">
             </div>
             <div class="flex-section">
-                <span>Velocidad del juego (fps)</span>
-                <input id="gameSpeed" type="text">
-            </div>
-            <div class="flex-section">
-                <span>Tamaño (píxeles)</span>
-                <input type="text">
-            </div>
-            <div class="flex-section">
-                <span>Color de la serpiente</span>
-                <select>
-                    <option value=""></option>
-                </select>
+                <div>Sonido</div>
+                <input id="sound" type="checkbox">
             </div>
 
             </div>
         </div>
         <div class="modal-buttons">
-            <button class="default">Por defecto</button>
-            <button class="save">Guardar</button>
-            <button class="cancel">Cancelar</button>
+            <button onclick="defaultButton()">Por defecto</button>
+            <button onclick="saveButton()">Guardar</button>
+            <button onclick="cancelButton()">Cancelar</button>
         </div>
     </dialog>
 </body>

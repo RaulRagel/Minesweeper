@@ -173,9 +173,6 @@ function generateBombs() {
     while (bombs > 0) {
         x = Math.floor(Math.random() * gameArray.length);
         y = Math.floor(Math.random() * gameArray.length);
-        if(gameArray[x][y] == 'X') {
-            console.log('Bomba repetida');
-        }
         if(gameArray[x][y] !== 'X') {
             gameArray[x][y] = 'X';
             bombs--;

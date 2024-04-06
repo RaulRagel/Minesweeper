@@ -63,7 +63,7 @@
     content: '💣';
 }
 #tablero .num-X {
-    background-color: rgba(212, 24, 24, 0.767) !important;
+    background-color: rgb(255 46 46 / 77%) !important;
 }
 
 #tablero .flag::before {
@@ -96,7 +96,7 @@
     flex-direction: column;
     z-index: 1;
     opacity: 0;
-    animation: 5s opa;
+    animation: 5s game-over;
 }
 .game-over-title {
     width: 100%;
@@ -117,7 +117,7 @@
     animation: 3s you-died;
 }
 
-@keyframes opa {
+@keyframes game-over {
     0% {
         opacity: 0;
     }
