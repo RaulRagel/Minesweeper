@@ -19,9 +19,11 @@ function initModal(){
 
     cellInput = document.getElementById('cells');
     bombInput = document.getElementById('bombs');
+    muteInput = document.getElementById('mute');
     
     cellInput.value = savedCells;
     bombInput.value = savedBombs;
+    muteInput.checked = savedMute;
 }
 
 function openModal(){
@@ -37,11 +39,13 @@ function closeModal(){
 function defaultButton() {
     cellInput.value = 8;
     bombInput.value = 12;
+    muteInput.checked = false;
 }
 
 function saveButton() {
     localStorage.setItem('cells', cellInput.value);
     localStorage.setItem('bombs', bombInput.value);
+    localStorage.setItem('mute', muteInput.checked);
 
     window.location.reload();
 }
