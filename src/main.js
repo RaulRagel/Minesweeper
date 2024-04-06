@@ -31,7 +31,7 @@ function getLocalSave() { // refactor variables, hacer un obj config
     if(localStorage.getItem('bombs')) {
         savedBombs = localStorage.getItem('bombs');
     }
-    if(localStorage.getItem('muteInput')) {
+    if(localStorage.getItem('mute')) {
       savedMute = localStorage.getItem('mute');
     }
 }

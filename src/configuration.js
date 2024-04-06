@@ -23,7 +23,7 @@ function initModal(){
     
     cellInput.value = savedCells;
     bombInput.value = savedBombs;
-    muteInput.checked = savedMute;
+    muteInput.checked = JSON.parse(savedMute);
 }
 
 function openModal(){
