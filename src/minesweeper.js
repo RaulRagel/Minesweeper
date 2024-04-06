@@ -1,9 +1,13 @@
 
+var table = null;
+var gameContainer = null;
 var gameArray = [];
 var max = 0;
 var holdClickTimeout = null;
 var flagging = false;
 var cellNumber = 0;
+var bombNumber = 0;
+var isGameOver = false;
 
 var directions = [
     [-1, -1], [-1, 0], [-1, 1],
@@ -11,21 +15,24 @@ var directions = [
     [1, -1], [1, 0], [1, 1]
 ];
 
-function Minesweeper(cellNumber, bombNumber) {
+function Minesweeper(cells, bombs) {
 
-    initTablero(cellNumber);
-    generateBombs(bombNumber);
+    table = document.getElementById('tablero');
+    gameContainer = document.getElementById('game-container');
+    cellNumber = cells;
+    bombNumber = bombs;
+
+    initTablero();
+    generateBombs();
     generateNumbers();
 
     // mostrar tablero
     // console.log('%ctablero.js gameArray', 'color: purple;', gameArray);
 }
 
-function initTablero(cellNumber) {
-    var table = document.getElementById('tablero');
+function initTablero() {
     var tr = null, td = null;
     var row = null;
-    this.cellNumber = cellNumber;
     for (var x = 0; x < cellNumber; x++) {
         tr = document.createElement('tr');
         row = [];
@@ -45,6 +52,15 @@ function initTablero(cellNumber) {
     max = gameArray.length - 1;
 }
 
+function discover(cell, x, y) {
+    cell.classList.add('discovered', 'num-' + gameArray[x][y]);
+    if(gameArray[x][y] == 'X') {
+        gameOver();
+    }else {
+        checkVictory();
+    }
+}
+
 function cellClick() {
     var [x, y] = this.id.split('-').map(Number);
     if(!flagMode) {
@@ -52,11 +68,9 @@ function cellClick() {
         if(flagging) { // siempre que sea true, es porque hemos mantenido
             flagging = false;
         } else {
-            this.classList.add('discovered', 'num-' + gameArray[x][y]);
+            discover(this, x, y);
         
-            if(gameArray[x][y] == 'X') {
-                gameOver();
-            } else if(gameArray[x][y] == '0') {
+            if(gameArray[x][y] == '0') {
                 expand(x, y);
             } else {
                 checkFlagsAndExpand(x, y);
@@ -73,18 +87,49 @@ function cellClick() {
 
 function gameOver() {
     var cell = null;
+    if(isGameOver) return; // necesario para que no haga una llamada por cada bomba
+    isGameOver = true;
     for (var x = 0; x < cellNumber; x++) {
         for (var y = 0; y < cellNumber; y++) {
             cell = getCell(x, y);
             if(gameArray[x][y] == 'X' && !cell.classList.contains('discovered')) {
-                cell.classList.add('discovered', 'num-' + gameArray[x][y]);
+                discover(cell, x, y); // este discover terminará llamando a esta función de nuevo
             }
         }
     }
-    setTimeout(function() {
-        alert('Game Over');
-        reload();
-    }, 100)
+    deathAnimation();
+}
+
+function checkVictory() {
+    var cell = null;
+    var count = 0;
+    for (var x = 0; x < cellNumber; x++) {
+        for (var y = 0; y < cellNumber; y++) {
+            cell = getCell(x, y);
+            if(cell.classList.contains('discovered')) count++;
+        }
+    }
+    if(count == (cellNumber * cellNumber) - bombNumber) {
+        winAnimation();
+    }
+}
+
+function deathAnimation() {
+    var deathMask = document.createElement("div");
+    deathMask.className = "game-over-mask";
+
+    var deathTitle = document.createElement("div");
+    deathTitle.className = "game-over-title souls-font";
+    deathTitle.textContent = "YOU DIED";
+
+    deathMask.appendChild(deathTitle);
+    document.body.appendChild(deathMask);
+}
+function winAnimation() {
+    var winMask = document.createElement("div");
+    winMask.className = "win-mask";
+
+    gameContainer.appendChild(winMask);
 }
 
 function holdAndSetFlag(e) {
@@ -110,10 +155,10 @@ function cancelHold() {
     }
 };
 
-function generateBombs(bombNumber) {
-    var x = 0, y = 0;
+function generateBombs() {
+    var x = 0, y = 0, bombs = bombNumber;
 
-    while (bombNumber > 0) {
+    while (bombs > 0) {
         x = Math.floor(Math.random() * gameArray.length);
         y = Math.floor(Math.random() * gameArray.length);
         if(gameArray[x][y] == 'X') {
@@ -121,7 +166,7 @@ function generateBombs(bombNumber) {
         }
         if(gameArray[x][y] !== 'X') {
             gameArray[x][y] = 'X';
-            bombNumber--;
+            bombs--;
         }
     }
 }
@@ -174,7 +219,7 @@ function expand(x, y) {
         var yy = y + dir[1];
         var cc = getCell(xx, yy);
         if(inbounds(xx, yy) && !cc.classList.contains('discovered') && !cc.classList.contains('flag')) {
-            cc.classList.add('discovered', 'num-' + gameArray[xx][yy]);
+            discover(cc, xx, yy);
             if(gameArray[xx][yy] == '0') expand(xx, yy);
         }
     });
