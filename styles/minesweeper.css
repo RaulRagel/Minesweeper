@@ -113,8 +113,8 @@
 .souls-font {
     font-family: "OptimusSemiBold";
     color: #841318;
-    font-size: 6vw;
-    animation: 3s you-die;
+    font-size: 6vh;
+    animation: 3s you-died;
 }
 
 @keyframes opa {
@@ -128,11 +128,11 @@
         opacity: 0;
     }
 }
-@keyframes you-die {
+@keyframes you-died {
     0% {
-        font-size: 4vw;
+        font-size: 4vh;
     }
     100% {
-        font-size: 6vw;
+        font-size: 6vh;
     }
 }
