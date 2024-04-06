@@ -129,9 +129,8 @@ function deathAnimation() {
     deathMask.appendChild(deathTitle);
     document.body.appendChild(deathMask);
 
-    var sonido = new Audio('sources/you_died.mp3');
-    sonido.play()
-    .catch(e => console.error('Error al reproducir el sonido:', e));
+    console.log(savedMute);
+    new Sound('sources/you_died.mp3', savedMute);
 }
 function winAnimation() {
     var winMask = document.createElement("div");
@@ -139,9 +138,7 @@ function winAnimation() {
 
     gameContainer.appendChild(winMask);
 
-    var sonido = new Audio('sources/win.mp3');
-    sonido.play()
-    .catch(e => console.error('Error al reproducir el sonido:', e));
+    new Sound('sources/win.mp3', savedMute);
 }
 
 function holdAndSetFlag(e) {

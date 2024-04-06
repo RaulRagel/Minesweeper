@@ -23,15 +23,8 @@ function reload() {
     window.location.reload();
 }
 
-function getLocalSave() { // refactor variables, hacer un obj config
-// o al menos hacer v = local || v
-    if(localStorage.getItem('cells')) {
-        savedCells = localStorage.getItem('cells');
-    }
-    if(localStorage.getItem('bombs')) {
-        savedBombs = localStorage.getItem('bombs');
-    }
-    if(localStorage.getItem('mute')) {
-      savedMute = localStorage.getItem('mute');
-    }
+function getLocalSave() {
+    savedCells = localStorage.getItem('cells') || savedCells;
+    savedBombs = localStorage.getItem('bombs') || savedBombs;
+    savedMute = JSON.parse(localStorage.getItem('mute')) || savedMute;
 }
