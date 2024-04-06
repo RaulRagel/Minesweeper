@@ -25,6 +25,7 @@
     color: white;
     border-radius: 10px;
     overflow: hidden;
+    box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
 }
 .modal-header {
     padding: 10px;
@@ -62,7 +63,7 @@
 }
 
 .modal-buttons {
-    margin-top: 2vw;
+    margin-top: 4vw;
     display: flex;
     justify-content: space-around;
     padding: 10px;
@@ -74,4 +75,5 @@
     border: none;
     cursor: pointer;
     text-transform: uppercase;
+    font-family: "OptimusSemiBold";
 }
