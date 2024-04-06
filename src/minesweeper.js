@@ -15,7 +15,7 @@ var directions = [
     [1, -1], [1, 0], [1, 1]
 ];
 
-function Minesweeper(cells, bombs) {
+function Minesweeper(cells, bombs=defaultBombs(cells)) {
 
     table = document.getElementById('tablero');
     gameContainer = document.getElementById('game-container');
@@ -28,6 +28,10 @@ function Minesweeper(cells, bombs) {
 
     // mostrar tablero
     // console.log('%ctablero.js gameArray', 'color: purple;', gameArray);
+}
+
+function defaultBombs(cells) {
+    return Math.trunc((cells*cells) / 5);
 }
 
 function initTablero() {
@@ -124,12 +128,20 @@ function deathAnimation() {
 
     deathMask.appendChild(deathTitle);
     document.body.appendChild(deathMask);
+
+    var sonido = new Audio('sources/you_died.mp3');
+    sonido.play()
+    .catch(e => console.error('Error al reproducir el sonido:', e));
 }
 function winAnimation() {
     var winMask = document.createElement("div");
     winMask.className = "win-mask";
 
     gameContainer.appendChild(winMask);
+
+    var sonido = new Audio('sources/win.mp3');
+    sonido.play()
+    .catch(e => console.error('Error al reproducir el sonido:', e));
 }
 
 function holdAndSetFlag(e) {

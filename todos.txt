@@ -4,10 +4,10 @@
 Bugs:
 - Si expandes y habia una bandera, debemos aplastarla
 
-
 - Menú de configuración
-- Game over: se desvelan todas las bombas y el usuario ya no puede hacer más clicks. Aparece un botón de restart
 - Meter musica, sfx y control de volumen
+    Puedes hacer una clase propia para controlar si está en mute y tal
+- Agregar dificultades
 
 En configuración:
 - El usuario puede decidir si usar el click derecho o mantener pulsado
